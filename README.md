@@ -1,2 +1,2 @@
 # real-state-app
-this is ionic, angular project
+this is ionic, angular project, mobile application
