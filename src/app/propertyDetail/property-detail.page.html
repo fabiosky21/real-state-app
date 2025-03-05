@@ -1,0 +1,95 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="goBack()">
+          <ion-icon name="arrow-back-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Swiper Container -->
+  <div #swiperContainer class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let image of images">
+        <div class="slide-container">
+          <img [src]="image" alt="Property Image" class="slide-image" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property Details -->
+  <div class="property-details">
+    <h1>{{ property?.name }}</h1>
+    <div class="property-icons">
+      <div class="icon-detail">
+        <img src="assets/icons/bed.png" alt="Beds">
+        <span>{{ property?.details?.beds }}</span>
+      </div>
+      <div class="icon-detail">
+        <img src="assets/icons/bath.png" alt="Baths">
+        <span>{{ property?.details?.baths }}</span>
+      </div>
+      <div class="icon-detail">
+        <img src="assets/icons/area.png" alt="Area">
+        <span>{{ property?.details?.area }} sqft</span>
+      </div>
+    </div>
+    <p class="price">Price: {{ property?.price }}</p>
+  </div>
+
+  <!-- Agent Section -->
+  <div class="agent-section">
+    <h2>Agent</h2>
+    <div class="agent-info">
+      <img [src]="property?.agent?.avatar" alt="Agent Avatar" class="agent-avatar">
+      <div class="agent-details">
+        <p class="agent-name">{{ property?.agent?.name }}</p>
+        <p class="agent-position">Supervisor</p>
+      </div>
+      <div class="agent-contact">
+        <div class="icon-container" (click)="toggleTooltip('message')">
+          <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+          <span class="tooltip" [class.show]="tooltipType === 'message'">Not available at the moment</span>
+        </div>
+
+        <div class="icon-container" (click)="toggleTooltip('phone')">
+          <ion-icon name="call-outline"></ion-icon>
+          <span class="tooltip" [class.show]="tooltipType === 'phone'">{{ property?.agent?.phone || 'No phone available' }}</span>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Facilities Section -->
+  <div class="facilities-section">
+    <h2>Facilities</h2>
+    <div class="facilities-grid">
+      <div class="facility-item" *ngFor="let facility of property?.facilities">
+        <img [src]="facilityIcons[facility]" alt="{{ facility }}" class="facility-icon">
+        <p>{{ facility | titlecase }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="overview-section">
+    <h2>Overview</h2>
+    <p>{{ property?.overview }}</p>  <!--  loads  Firestore -->
+  </div>
+
+  <!-- Google Maps -->
+  <div class="location-section">
+    <h2>Location</h2>
+    <div #map class="map-container"></div>
+  </div>
+
+  <!-- Booking Button -->
+  <div class="book-now-section">
+    <h2>Interested in the property? Book now!</h2>
+    <ion-button expand="block" color="primary" (click)="bookNow()">Book Now!</ion-button>
+  </div>
+</ion-content>

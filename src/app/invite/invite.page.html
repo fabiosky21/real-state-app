@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Invite a Friend</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="inviteForm" (ngSubmit)="sendInvitation()">
+    <ion-item>
+      <ion-label position="floating">Recipient Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Message</ion-label>
+      <ion-textarea formControlName="message"></ion-textarea>
+    </ion-item>
+
+    <div class="qr-container">
+      <img *ngIf="qrCodeUrl" [src]="qrCodeUrl" alt="QR Code" />
+    </div>
+
+    <ion-button type="submit" [disabled]="inviteForm.invalid">
+      Send Invitation
+    </ion-button>
+
+    <ion-button type="button" (click)="generateQRCode()">
+      Generate QR Code
+    </ion-button>
+
+  </form>
+</ion-content>

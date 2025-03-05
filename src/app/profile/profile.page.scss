@@ -1,0 +1,135 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Avatar Styling */
+.avatar-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: visible;
+  margin-bottom: 15px;
+}
+
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-btn {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  background: #62aeff;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-btn ion-icon {
+  font-size: 20px;
+  color: white;
+}
+
+.upload-btn input {
+  display: none;
+}
+
+/* 🔹 Username Styling */
+.username {
+  font-size: 23px !important;
+  font-weight: bold !important;
+  margin-bottom: 20px;
+  color: #110101 !important;
+}
+
+/* 🔹 Menu Styling */
+.menu {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.menu-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.menu-item ion-icon {
+  font-size: 22px;
+  margin-right: 10px;
+  color: #555;
+}
+
+.arrow {
+  margin-left: auto;
+  color: #888;
+}
+
+/* 🔹 Logout Button */
+.logout-btn {
+  margin-top: 20px;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  width: 80%;
+}
+
+@media (min-width: 768px) {
+  .profile-container {
+    margin: 20px;
+  }
+
+  .avatar-wrapper {
+    width: 150px;
+    height: 150px;
+  }
+
+  .username {
+    font-size: 30px !important;
+  }
+
+  .menu {
+    max-width: 500px;
+  }
+
+  .menu-item {
+    padding: 20px;
+    font-size: 30px;
+  }
+
+
+  .upload-btn ion-icon {
+    font-size: 30px;
+    color: white;
+  }
+  ion-icon{
+    font-size: 30px !important;
+
+  }
+  .logout-btn {
+    font-size: 20px;
+    padding: 115px 90px;
+  }
+
+
+}

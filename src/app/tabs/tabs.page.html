@@ -1,0 +1,18 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom" class="custom-tab-bar">
+    <ion-tab-button tab="home" [routerLink]="'/home'" [class.active]="selectedTab === 'home'" (click)="setActiveTab('home')">
+      <ion-icon name="home-outline" class="custom-icon"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="explore" [routerLink]="'/explore'" [class.active]="selectedTab === 'explore'" (click)="setActiveTab('explore')">
+      <ion-icon name="compass-outline" class="custom-icon"></ion-icon>
+      <ion-label>Explore</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile" [routerLink]="'/profile'" [class.active]="selectedTab === 'profile'" (click)="setActiveTab('profile')">
+      <ion-icon name="person-outline" class="custom-icon"></ion-icon>
+      <ion-label>Profile</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

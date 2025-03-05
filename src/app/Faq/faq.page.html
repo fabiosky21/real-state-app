@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Frequently Asked Questions</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="faq-container">
+    <ion-card *ngFor="let faq of faqs; let i = index">
+      <ion-item button (click)="toggleFAQ(i)">
+        <ion-label class="faq-question">{{ faq.question }}</ion-label>
+        <ion-icon [name]="faq.expanded ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+      </ion-item>
+      <div class="faq-answer" *ngIf="faq.expanded">
+        <p>{{ faq.answer }}</p>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,55 @@
+<ion-content>
+  <div class="explore-text">Explore your ideal home</div>
+
+  <!--  Search Bar -->
+  <ion-item class="custom-search">
+    <ion-icon name="search-outline"></ion-icon>
+    <ion-input [(ngModel)]="searchTerm" (ionInput)="filterProperties()" placeholder="Search properties..."></ion-input>
+  </ion-item>
+
+  <!--  Filter Buttons -->
+  <div class="filter-buttons">
+    <button *ngFor="let filter of filters" [ngClass]="{'active': selectedFilter === filter}" (click)="applyFilter(filter)">
+      {{ filter }}
+    </button>
+  </div>
+
+  <!-- Properties List -->
+  <div class="card-container" *ngIf="filteredProperties.length > 0">
+    <div class="card" *ngFor="let property of filteredProperties" (click)="viewPropertyDetail(property.id)">
+
+      <!-- roperty Image -->
+      <img [src]="property.imageUrls[0]" alt="Property Image" class="card-image">
+
+      <!--  Rating Pill (Top Right) -->
+      <div class="rating-pill">
+        <span>{{ property.rating }}</span>
+        <img src="assets/icons/star.png" class="rating-icon" alt="Rating Star">
+      </div>
+
+      <!--  Like Button (Bottom Right) -->
+      <div class="heart-icon" (click)="toggleLike(property, $event)">
+        <img
+          [src]="property.userLiked[userId] ? 'assets/icons/heartfilled.png' : 'assets/icons/hearte.png'"
+          class="icon"
+          alt="Like Button"
+        />
+        <span>{{ property.likes }}</span>
+      </div>
+
+      <!--  Property Details -->
+      <div class="card-content">
+        <h2>{{ property.name }}</h2>
+        <p>{{ property.location }}</p>
+        <p class="price">{{ property.price }}</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- No Results Found -->
+  <div class="no-results" *ngIf="filteredProperties.length === 0">
+    <img src="assets/images/no-result.png" alt="No Results" class="no-result-image">
+    <p>No results found</p>
+  </div>
+</ion-content>

@@ -1,0 +1,64 @@
+<ion-content>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="goBack()">
+          <ion-icon name="arrow-back-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    
+<ion-content>
+  <div class="sign-up-container">
+    <h2 class="slogan">Create an Account</h2>
+
+    <form (submit)="signUpWithEmail()" #signUpForm="ngForm">
+      <div class="input-container">
+        <ion-item class="input-item">
+          <ion-label position="stacked">Username</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Enter your username"
+            [(ngModel)]="username"
+            name="username"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input
+            type="email"
+            placeholder="Enter your email"
+            [(ngModel)]="email"
+            name="email"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input
+            [type]="passwordType"
+            placeholder="Enter your password"
+            [(ngModel)]="password"
+            name="password"
+            required>
+          </ion-input>
+          <ion-icon slot="end"
+            [name]="passwordIcon"
+            (click)="togglePasswordVisibility()">
+          </ion-icon>
+        </ion-item>
+      </div>
+
+
+
+      <ion-button expand="block" class="custom-button" type="submit" [disabled]="signUpForm.invalid">
+        Sign Up
+      </ion-button>
+    </form>
+  </div>
+  <div class="gift-container">
+    <img src="assets/images/copivideo.gif" alt="gift" class="gift">
+    </div>
+</ion-content>

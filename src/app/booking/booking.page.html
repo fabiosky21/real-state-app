@@ -1,0 +1,55 @@
+<ion-content>
+  <div class="booking-container">
+    <h2>Book a Visit</h2>
+    <p>Choose your preferred date & time with our agents.</p>
+
+    <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+      <!--  Full Name -->
+      <mat-form-field appearance="outline">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="fullName" required>
+      </mat-form-field>
+
+      <!--  Property Name (Readonly) -->
+      <mat-form-field appearance="outline">
+        <mat-label>Property Name</mat-label>
+        <input matInput formControlName="propertyName" readonly>
+      </mat-form-field>
+
+      <!--  Select Agent (Dropdown) -->
+      <mat-form-field appearance="outline">
+        <mat-label>Agent</mat-label>
+        <mat-select formControlName="agent">
+          <mat-option *ngIf="agents.length > 0" [value]="agents[0]">
+            {{ agents[0] }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+
+      <!--  Date Picker (Prevent Typing) -->
+      <mat-form-field appearance="outline">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date"
+               [min]="minDate"
+               (dateChange)="onDateChange($event)"
+               (click)="picker.open()">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+
+      <!--  Available Times (Appears After Selecting Date) -->
+      <mat-form-field appearance="outline" *ngIf="selectedDate">
+        <mat-label>Available Times</mat-label>
+        <mat-select formControlName="time">
+          <mat-option *ngFor="let time of availableTimes" [value]="time">{{ time }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Submit Button -->
+      <ion-button expand="block" type="submit" [disabled]="bookingForm.invalid">Submit</ion-button>
+    </form>
+  </div>
+</ion-content>
