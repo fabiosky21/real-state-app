@@ -1,0 +1,73 @@
+<ion-content>
+  <div class="sign-in-container">
+    <img
+      src="assets/images/onboarding.png"
+      alt="Sign Up Image"
+      class="sign-in-image"
+    />
+    <h2 class="slogan">Discover the best states!</h2>
+
+    <div class="input-container">
+      <ion-item class="input-item">
+        <ion-label position="stacked">Email</ion-label>
+
+        <ion-input
+          class="my-custom-input"
+          type="email"
+          placeholder="Enter your email"
+          [(ngModel)]="email"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-item class="input-item">
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input
+          class="my-custom-input"
+          [type]="passwordType"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+        ></ion-input>
+        <ion-icon
+          slot="end"
+          [name]="passwordIcon"
+          (click)="togglePasswordVisibility()"
+        ></ion-icon>
+      </ion-item>
+    </div>
+
+    <ion-button
+      expand="full"
+      class="custom-button"
+      (touchstart)="onTouchStart($event)"
+      (touchend)="onTouchEnd($event)"
+      (click)="signInWithEmail()"
+    >
+      Sign In
+    </ion-button>
+
+    <div class="or-divider">
+      <span class="line"></span>
+      <span class="or-text">OR</span>
+      <span class="line"></span>
+    </div>
+    <ion-button
+      expand="full"
+      class="custom-button google-btn"
+      color="danger"
+      (touchstart)="onTouchStart($event)"
+      (touchend)="onTouchEnd($event)"
+      (click)="signInWithGoogle()"
+    >
+      <ion-icon slot="start" name="logo-google"></ion-icon>Sign in with Google
+    </ion-button>
+
+    <div class="sign-up-link-container">
+      <p>
+        Don't have an account yet?
+        <a routerLink="/sign-up" class="sign-up-link">Sign Up</a>
+      </p>
+    </div>
+
+  </div>
+</ion-content>

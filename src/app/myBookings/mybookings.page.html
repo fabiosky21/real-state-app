@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>My Bookings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!--  Show loading indicator -->
+  <ion-spinner *ngIf="loading"></ion-spinner>
+
+  <!-- If there are bookings, display them in cards -->
+  <ng-container *ngIf="!loading && bookings.length > 0">
+    <ion-card *ngFor="let booking of bookings">
+      <ion-card-header>
+        <!--  Property Image and Name -->
+        <img *ngIf="booking.imagesUrl" [src]="booking.imagesUrl" class="property-img" alt="Property"/>
+        <h2 class="property-title">{{ booking.propertyName || 'Unknown Property' }}</h2>
+      </ion-card-header>
+
+      <ion-card-content>
+        <!--  Agent Information -->
+        <ion-item>
+          <ion-avatar slot="start">
+            <img *ngIf="booking.agentImageUrl" [src]="booking.agentImageUrl" alt="Agent"/>
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ booking.agentName || 'Unknown Agent' }}</h2>
+            <p>{{ booking.agentPhone || 'No phone available' }}</p>
+          </ion-label>
+        </ion-item>
+
+        <!--  Date and Time -->
+        <p><strong>Date:</strong> {{ booking.date || 'No date available' }}</p>
+        <p><strong>Time Slot:</strong> {{ booking.time || 'No time selected' }}</p>
+      </ion-card-content>
+    </ion-card>
+
+  </ng-container>
+
+  <!--  If no bookings exist, show a message -->
+  <ng-container *ngIf="!loading && bookings.length === 0">
+    <div class="no-bookings-container">
+      <img src="assets/no-bookings.png" alt="No Bookings" />
+      <p>No bookings yet.</p>
+    </div>
+  </ng-container>
+</ion-content>

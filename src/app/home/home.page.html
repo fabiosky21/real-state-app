@@ -1,20 +1,64 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <div class="welcome-section">
+    <div class="pill-button">
+      <img [src]="userAvatar" alt="User Avatar" class="avatar">
+      <span>Welcome, {{ userName }}!</span>
+    </div>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="gif-section">
+    <img src="assets/images/videof.gif" alt="GIF Image" class="gif-image">
+  </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="image-section">
+    <img src="assets/images/keyimage.jpg" alt="JPG Image" class="image-house">
+  </div>
+
+  <div class="featured-text">Featured</div>
+
+  <div class="card-container">
+    <div class="card" *ngFor="let property of featuredProperties" (click)="viewPropertyDetail(property.id)">
+      <img [src]="property.imageUrls[0]" alt="Property Image" class="card-image">
+
+      <div class="rating-pill">
+        <span>{{ property.rating }}</span>
+        <img src="assets/icons/star.png" class="rating-icon" alt="Star">
+      </div>
+
+      <div class="heart-icon" (click)="toggleLike(property, $event)">
+        <img [src]="property.userLiked[userId] ? 'assets/icons/heartfilled.png' : 'assets/icons/hearte.png'" class="icon">
+        <span>{{ property.likes }}</span>
+      </div>
+
+      <div class="card-content">
+        <h2>{{ property.name }}</h2>
+        <p>{{ property.location }}</p>
+        <p class="price">{{ property.price }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="recommendation-text">
+    Our Recommendation
+    <p class="sub-text">These are the top properties in the market, rated and liked by customers & communities.</p>
+  </div>
+
+  <div class="filter-buttons">
+    <button *ngFor="let filter of filters"
+      [ngClass]="{'active': selectedFilter === filter}"
+      (click)="applyFilter(filter)">
+      {{ filter }}
+    </button>
+  </div>
+
+  <div class="card-container last-card-container">
+    <div class="card" *ngFor="let property of filteredProperties">
+      <img [src]="property.imageUrls[0]" alt="Property Image" class="card-image">
+      <div class="card-content">
+        <h2>{{ property.name }}</h2>
+        <p>{{ property.location }}</p>
+        <p class="price">{{ property.price }}</p>
+      </div>
+    </div>
   </div>
 </ion-content>

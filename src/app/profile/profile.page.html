@@ -1,0 +1,41 @@
+<ion-content>
+  <div class="profile-container">
+    <!-- Avatar Upload -->
+    <div class="avatar-wrapper">
+      <img [src]="avatarUrl" alt="User Avatar" class="avatar">
+      <label class="upload-btn">
+        <ion-icon name="camera-outline"></ion-icon>
+        <input type="file" (change)="updateAvatar($event)">
+      </label>
+    </div>
+
+    <!-- Username -->
+    <h2 class="username">{{ username }}</h2>
+
+    <!-- Menu Items -->
+    <div class="menu">
+      <div class="menu-item" (click)="goTo('myBookings')">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span>My Bookings</span>
+        <ion-icon name="arrow-forward-outline" class="arrow"></ion-icon>
+      </div>
+
+      <div class="menu-item" (click)="goTo('Faq')">
+        <ion-icon name="help-circle-outline"></ion-icon>
+        <span>FAQ</span>
+        <ion-icon name="arrow-forward-outline" class="arrow"></ion-icon>
+      </div>
+
+      <div class="menu-item" (click)="goTo('invite')">
+        <ion-icon name="gift-outline"></ion-icon>
+        <span>Invite a Friend</span>
+        <ion-icon name="arrow-forward-outline" class="arrow"></ion-icon>
+      </div>
+    </div>
+
+    <!-- Logout Button -->
+    <ion-button expand="block" color="danger" class="logout-btn" (click)="logout()">
+      Logout
+    </ion-button>
+  </div>
+</ion-content>
