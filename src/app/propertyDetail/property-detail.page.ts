@@ -125,5 +125,5 @@ export class PropertyDetailPage implements OnInit {
 
   toggleTooltip(type: string) {
     this.tooltipType = this.tooltipType === type ? null : type; // Toggle visibility
-  }
+  } 
 }
