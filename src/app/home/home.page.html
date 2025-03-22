@@ -52,7 +52,7 @@
   </div>
 
   <div class="card-container last-card-container">
-    <div class="card" *ngFor="let property of filteredProperties">
+    <div class="card" *ngFor="let property of filteredProperties" (click)="viewPropertyDetail(property.id)">
       <img [src]="property.imageUrls[0]" alt="Property Image" class="card-image">
       <div class="card-content">
         <h2>{{ property.name }}</h2>

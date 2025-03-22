@@ -2,12 +2,27 @@
   <div class="profile-container">
     <!-- Avatar Upload -->
     <div class="avatar-wrapper">
-      <img [src]="avatarUrl" alt="User Avatar" class="avatar">
-      <label class="upload-btn">
+      <img [src]="avatarUrl" alt="User Avatar" class="avatar" />
+      <button class="upload-btn" (click)="toggleAvatarBox()">
         <ion-icon name="camera-outline"></ion-icon>
-        <input type="file" (change)="updateAvatar($event)">
-      </label>
+        <input type="file" (change)="updateAvatar($event)" />
+      </button>
     </div>
+
+
+    <div class="avatar-box fade-in" *ngIf="showAvatarBox" (click)="$event.stopPropagation()">
+      <p>Select Avatar</p>
+      <div class="avatar-options">
+        <img
+          *ngFor="let avatar of availableAvatars"
+          [src]="avatar"
+          [class.selected]="avatar === avatarUrl"
+          (click)="selectAvatar(avatar)"
+        />
+      </div>
+      <button class="close-btn" (click)="toggleAvatarBox()">Close</button>
+    </div>
+
 
     <!-- Username -->
     <h2 class="username">{{ username }}</h2>
@@ -26,16 +41,47 @@
         <ion-icon name="arrow-forward-outline" class="arrow"></ion-icon>
       </div>
 
-      <div class="menu-item" (click)="goTo('invite')">
-        <ion-icon name="gift-outline"></ion-icon>
-        <span>Invite a Friend</span>
+      <div class="menu-item" (click)="openNameBox()">
+        <ion-icon name="create-outline"></ion-icon>
+        <span>Change Name</span>
         <ion-icon name="arrow-forward-outline" class="arrow"></ion-icon>
+      </div>
+
+      <div class="name-change-wrapper" *ngIf="showNameBox">
+        <div class="name-change-box" (click)="$event.stopPropagation()">
+          <ng-container *ngIf="!showConfirmBox">
+            <p>Enter new name:</p>
+            <input type="text" [(ngModel)]="newUsername" placeholder="New name" />
+            <div class="name-btns">
+              <button class="yes" (click)="goToConfirm()">Yes</button>
+              <button class="no" (click)="cancelChangeName()">No</button>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="showConfirmBox">
+            <p><strong>Are you sure?</strong></p>
+            <p class="warning-text">Once you change your name, there is no way to come back.</p>
+            <div class="name-btns">
+              <button class="yes" (click)="confirmChangeName()">Confirm</button>
+              <button class="no" (click)="cancelChangeName()">Cancel</button>
+            </div>
+          </ng-container>
+        </div>
       </div>
     </div>
 
     <!-- Logout Button -->
-    <ion-button expand="block" color="danger" class="logout-btn" (click)="logout()">
+    <ion-button
+      expand="block"
+      color="danger"
+      class="logout-btn"
+      (click)="logout()"
+    >
       Logout
     </ion-button>
   </div>
+
+
 </ion-content>
+
+

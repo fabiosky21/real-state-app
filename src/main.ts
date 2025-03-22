@@ -29,6 +29,7 @@ import {
   helpCircleOutline,
   giftOutline,
   arrowForwardOutline,
+  createOutline,
 } from 'ionicons/icons';
 
 import { routes } from './app/app.routes';
@@ -59,6 +60,7 @@ addIcons({
   'help-circle-outline': helpCircleOutline,
   'gift-outline': giftOutline,
   'arrow-forward-outline': arrowForwardOutline,
+  'create-outline': createOutline,
 });
 
 // Initialize Ionic PWA elements

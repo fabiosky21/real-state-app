@@ -1,3 +1,9 @@
+ion-content {
+  --padding-bottom: 0;
+  position: relative;
+  overflow: visible !important; 
+}
+
 .profile-container {
   display: flex;
   flex-direction: column;
@@ -20,19 +26,61 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
 }
 
 .upload-btn {
   position: absolute;
-  bottom: -10px;
-  right: -10px;
+  bottom: 5px;
+  right: calc(50% - 55px);
   background: #62aeff;
+  color: white;
+  border: none;
   border-radius: 50%;
   padding: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.avatar-box{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  z-index: 999;
+}
+.avatar-options img{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+}
+.avatar-options img:hover {
+  transform: scale(1.1);
+}
+
+.avatar-options img.selected {
+  border: 3px solid #62aeff;
+}
+
+.close-btn {
+  margin-top: 15px;
+  background-color: #ccc;
+  color: black;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .upload-btn ion-icon {
@@ -44,7 +92,7 @@
   display: none;
 }
 
-/* 🔹 Username Styling */
+/*  Username Styling */
 .username {
   font-size: 23px !important;
   font-weight: bold !important;
@@ -52,7 +100,7 @@
   color: #110101 !important;
 }
 
-/* 🔹 Menu Styling */
+/*  Menu Styling */
 .menu {
   width: 100%;
   max-width: 400px;
@@ -84,8 +132,61 @@
   margin-left: auto;
   color: #888;
 }
+.name-change-wrapper {
+  position: relative;
+  z-index: 999;
+}
 
-/* 🔹 Logout Button */
+.name-change-box {
+  margin-top: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.name-change-box input {
+  padding: 10px;
+  width: 80%;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.warning-text {
+  color: #e53935;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.name-btns {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.name-btns .yes {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.name-btns .no {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+
+/* Logout Button */
 .logout-btn {
   margin-top: 20px;
   font-size: 16px;
@@ -94,14 +195,22 @@
   width: 80%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) and ( max-width: 1024px) {
   .profile-container {
-    margin: 20px;
+    margin: 40px auto;
+    padding: 30px;
+    max-width: 700px;
   }
 
   .avatar-wrapper {
-    width: 150px;
-    height: 150px;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+  }
+  .avatar{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
   }
 
   .username {
@@ -109,17 +218,26 @@
   }
 
   .menu {
-    max-width: 500px;
+    max-width: 600px;
+    width: 100%;
   }
 
   .menu-item {
     padding: 20px;
-    font-size: 30px;
+    font-size: 26px;
+  }
+  .upload-btn{
+    bottom: 10px;
+    right: calc(50% - 85px);
+    padding: 10px;
+  }
+  .arrow{
+    font-size: 26px;
   }
 
 
   .upload-btn ion-icon {
-    font-size: 30px;
+    font-size: 28px;
     color: white;
   }
   ion-icon{
@@ -128,8 +246,60 @@
   }
   .logout-btn {
     font-size: 20px;
-    padding: 115px 90px;
+    padding: 15px 90px;
+    width: 70%;
+    margin-top: 40px;
   }
+
+  .avatar-box{
+    padding: 30px;
+    width: 80%;
+    max-width: 400px;
+  }
+  .avatar-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    max-width: 100%;
+
+  }
+  .avatar-options img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .close-btn {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-top: 20px;
+  }
+  .name-change-box {
+    padding: 30px;
+    max-width: 600px;
+    margin: 40px auto;
+    border-radius: 16px;
+  }
+  .name-change-box input {
+    padding: 14px;
+    width: 90%;
+    font-size: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  .name-btns{
+    gap: 25px;
+  }
+  .name-btns .yes,
+  .name-btns .no {
+    font-size: 18px;
+    padding: 12px 28px;
+    border-radius: 10px;
+  }
+
+
+
 
 
 }

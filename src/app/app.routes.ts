@@ -35,7 +35,7 @@ export const routes: Routes = [
       { path: 'booking', component: BookingPage },
       { path: 'myBookings', component: MyBookingsPage },
       { path: 'Faq', component: FaqPage },
-      { path: 'invite', component: InvitePage },
+      { path: 'imagec', component: InvitePage },
       { path: '', redirectTo: 'home', pathMatch: 'full' }, // Default to Home
     ],
   },

@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PropertyService, Property } from '../services/property.service';
 import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular/standalone';
+import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 
 
 @Component({
@@ -20,22 +21,43 @@ export class HomePage implements OnInit {
   userId: string = '';
   searchTerm: string = '';
   selectedFilter: string = 'All';
-  filters: string[] = [ 'Most Liked', 'Less Liked', 'More Rated', 'More Expensive'];
+  filters: string[] = [
+    'Most Liked',
+    'Less Liked',
+    'More Rated',
+    'More Expensive',
+  ];
 
   properties: Property[] = [];
   filteredProperties: Property[] = [];
   featuredProperties: Property[] = [];
 
-  constructor(private auth: Auth, private propertyService: PropertyService, private router: Router) {}
+  constructor(
+    private auth: Auth,
+    private propertyService: PropertyService,
+    private router: Router,
+    private firestore: Firestore
+  ) {}
 
   ngOnInit() {
     // Get User Auth
     const authInstance = getAuth();
-    onAuthStateChanged(authInstance, (user) => {
+    onAuthStateChanged(authInstance, async (user) => {
       if (user) {
         this.userId = user.uid;
         this.userName = user.displayName || 'User';
-        this.userAvatar = user.photoURL || this.generateInitialAvatar(this.userName);
+
+        const userDoc = doc(this.firestore, `users/${this.userId}`);
+        const docSnap = await getDoc(userDoc);
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          this.userName = userData['username'] || 'User';
+          this.userAvatar = userData['avatarUrl'] || user.photoURL || this.generateInitialAvatar(this.userName);
+        }
+        else {
+        this.userAvatar =
+          user.photoURL || this.generateInitialAvatar(this.userName);
+        }
         this.loadProperties();
       }
     });
@@ -45,9 +67,12 @@ export class HomePage implements OnInit {
     this.propertyService.getProperties().subscribe((data) => {
       this.properties = data;
       this.filteredProperties = data;
-      this.featuredProperties = data.filter(property => property.featured === true);
+      this.featuredProperties = data.filter(
+        (property) => property.featured === true
+      );
     });
   }
+  //avatar part
 
   generateInitialAvatar(name: string): string {
     const initial = name.charAt(0).toUpperCase();
@@ -68,25 +93,38 @@ export class HomePage implements OnInit {
 
     return canvas.toDataURL();
   }
-
+//fillter part proprtis
   applyFilter(filter: string) {
     this.selectedFilter = filter;
 
     switch (filter) {
       case 'Most Liked':
-        this.filteredProperties = this.properties.filter(property => property.likes > 99);
+        this.filteredProperties = this.properties.filter(
+          (property) => property.likes > 99
+        );
         break;
       case 'Less Liked':
-        this.filteredProperties = this.properties.filter(property => property.likes <= 99);
+        this.filteredProperties = this.properties.filter(
+          (property) => property.likes <= 99
+        );
         break;
       case 'More Rated':
-        this.filteredProperties = this.properties.filter(property => property.rating > 4.0);
+        this.filteredProperties = this.properties.filter(
+          (property) => property.rating > 4.0
+        );
         break;
-      case 'More Expensive':
-        this.filteredProperties = this.properties.filter(property => parseFloat(property.price.replace(/[^0-9.]/g, '')) > 900.000);
-        break;
-      default:
-        this.filteredProperties = this.properties;
+        case 'More Expensive':
+          this.filteredProperties = this.properties.filter(property => {
+            if (!property.price) return false;
+
+            const priceString = property.price
+              .replace(/[€,\s]/g, '')
+              .replace(/[.](?=\d{3})/g, '');
+            const price = parseInt(priceString, 10);
+            return price > 900000;
+          });
+          break;
+
     }
   }
 
@@ -102,8 +140,11 @@ export class HomePage implements OnInit {
     let newLikes = property.likes || 0;
     newLikes += wasLikedBefore ? -1 : 1;
 
-    this.propertyService.updateProperty(property.id, { likes: newLikes, userLiked })
-      .catch(error => console.error("❌ Error updating property likes:", error));
+    this.propertyService
+      .updateProperty(property.id, { likes: newLikes, userLiked })
+      .catch((error) =>
+        console.error(' Error updating property likes:', error)
+      );
   }
 
   viewPropertyDetail(propertyId: string) {

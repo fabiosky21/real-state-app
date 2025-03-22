@@ -93,7 +93,7 @@
   color: #62aeff;
 }
 
-/* Recommendation Text */
+
 .recommendation-text {
   margin: 20px;
   font-size: 24px;
@@ -133,13 +133,13 @@
   color: white;
 }
 
-/* Popover Tooltip (Appears Above Each Filter Button) */
+
 .filter-tooltip {
   position: absolute;
-  top: -50px; /*  Positioned Further Above Button */
+  top: -50px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(51, 51, 51, 0.9); /* Darker for better visibility */
+  background-color: rgba(51, 51, 51, 0.9);
   color: white;
   padding: 8px 12px;
   border-radius: 8px;
@@ -157,7 +157,7 @@
   visibility: visible;
 }
 
-/* Rating Pill (Top Right) */
+
 .rating-pill {
   position: absolute;
   top: 8px;
@@ -200,28 +200,46 @@
 }
 
 
-/*  Larger Screens (Tablets, Desktops) */
-@media (min-width: 1080px) {
+
+@media (min-width: 600px) and (max-width: 1024px) {
   .welcome-section {
     display: flex;
     align-items: center;
-    padding: 20px;
-    font-size: 35px;
-    margin-bottom: 80px;
+    padding: 15px;
+    font-size: 28px;
+    margin-bottom: 50px;
   }
 
   .pill-button {
-    padding: 0px 10px;
+    padding: 5px 15px;
   }
 
   .avatar {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
   }
+  /* GIF and House Image Section */
+.gif-section, .image-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.gif-image, .image-house {
+  width: 70%;
+  max-width: 600px;
+  height: auto;
+}
+
+.image-house {
+  border-radius: 30%;
+  height: 300px;
+  width: 500px;
+}
 
   .featured-text {
-    margin: 40px;
-    font-size: 40px;
+    margin: 30px;
+    font-size: 32px;
   }
 
   .card-container {
@@ -234,36 +252,35 @@
   }
 
   .card-image {
-    height: 300px;
+    height: 250px;
   }
 
   .card-content h2 {
-    font-size: 35px;
+    font-size: 28px;
   }
 
   .card-content p {
-    font-size: 29px;
+    font-size: 24px;
   }
 
   .price {
-    font-size: 29px;
+    font-size: 24px;
   }
 
   .recommendation-text {
-    margin: 30px;
-    font-size: 39px;
-  }
-
-  .filter-buttons {
-    padding: 0 78px;
-  }
-
-  .filter-buttons button {
-    padding: 15px 25px;
+    margin: 20px;
     font-size: 30px;
   }
 
-  /* Adjustments for Tablet - Bigger Rating Pill & Heart */
+  .filter-buttons {
+    padding: 0 50px;
+  }
+
+  .filter-buttons button {
+    padding: 12px 20px;
+    font-size: 24px;
+  }
+
   .rating-pill {
     padding: 10px 15px;
     font-size: 30px;
