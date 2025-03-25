@@ -166,7 +166,6 @@ ion-toolbar ion-buttons ion-button ion-icon[name="arrow-back-circle-outline"] {
   opacity: 1;
 }
 
-
 /* Overview Section Styling **********************/
 .overview-section {
   padding: 20px;
@@ -248,29 +247,53 @@ ion-toolbar ion-buttons ion-button ion-icon[name="arrow-back-circle-outline"] {
 }
 
 /* Tablet CSS **************************/
-@media (min-width: 1024px) {
+@media (min-width: 600px) and (max-width: 1024px) {
   ion-toolbar
     ion-buttons
     ion-button
     ion-icon[name="arrow-back-circle-outline"] {
-    font-size: 70px;
+    font-size: 50px;
   }
 
   .swiper {
-    height: 500px;
+    width: 100%;
+    height: 300px; /* Adjust as needed */
+  }
+
+  .swiper-wrapper {
+    display: flex;
+  }
+
+  .swiper-slide {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .slide-container {
-    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px; /* Fixed height */
+    overflow: hidden;
+  }
+
+  .slide-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
   }
 
   .property-details h1 {
-    font-size: 55px;
+    font-size: 40px;
   }
 
   .property-icons img {
-    width: 55px;
-    height: 55px;
+    width: 40px;
+    height: 40px;
   }
 
   .property-icons span {
@@ -283,7 +306,7 @@ ion-toolbar ion-buttons ion-button ion-icon[name="arrow-back-circle-outline"] {
 
   /* Agent Section */
   .agent-section {
-    padding: 60px;
+    padding: 60px 30px;
   }
 
   .agent-section h2 {
@@ -305,10 +328,10 @@ ion-toolbar ion-buttons ion-button ion-icon[name="arrow-back-circle-outline"] {
   }
 
   .agent-contact ion-icon {
-    font-size: 80px;
+    font-size: 55px;
   }
   .agent-contact {
-    margin-right: 120px;
+    margin-right: 10px;
   }
 
   /* Overview Section */
@@ -330,8 +353,8 @@ ion-toolbar ion-buttons ion-button ion-icon[name="arrow-back-circle-outline"] {
   }
 
   .facility-icon {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
   }
 
   .facility-item p {
