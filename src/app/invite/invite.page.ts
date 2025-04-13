@@ -34,7 +34,7 @@ export class InvitePage {
   }
 
   generateQRCode() {
-    const appUrl = `http://localhost:8100/`; // Change this to your actual hosted URL
+    const appUrl = `http://localhost:8100/`;
     const qrCodeData = encodeURIComponent(appUrl);
     this.qrCodeUrl = this.sanitizer.bypassSecurityTrustUrl(
       `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrCodeData}`
@@ -50,7 +50,7 @@ export class InvitePage {
     const email = this.inviteForm.value.email;
     const message = this.inviteForm.value.message;
 
-    console.log('📨 Sending invitation to:', email);
+    console.log(' Sending invitation to:', email);
 
     let emailData = {
       to: email,
@@ -60,6 +60,6 @@ export class InvitePage {
     };
 
     this.emailComposer.open(emailData);
-    console.log('📧 Email Sent to:', email);
+    console.log('Email Sent to:', email);
   }
 }

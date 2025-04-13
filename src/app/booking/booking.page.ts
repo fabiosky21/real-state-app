@@ -179,7 +179,7 @@ export class BookingPage implements OnInit {
 
         await alert.present();
       } catch (error) {
-        console.error("❌ Error saving booking:", error);
+        console.error(" Error saving booking:", error);
       }
     } else {
       console.log(" Booking Form is invalid");

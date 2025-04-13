@@ -61,7 +61,7 @@ export class MyBookingsPage implements OnInit {
 
       console.log(" Bookings fetched:", this.bookings);
     } catch (error) {
-      console.error("❌ Error fetching bookings:", error);
+      console.error(" Error fetching bookings:", error);
     } finally {
       this.loading = false;
     }

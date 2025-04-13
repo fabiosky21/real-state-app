@@ -67,7 +67,7 @@ export class SignUpPage {
 
       await sendEmailVerification(user, { url: 'http://localhost:8100/sign-in', handleCodeInApp: true });
 
-      // Show verification alert for 3 seconds before redirecting
+      // show verification alert for 3 seconds before redirecting
       this.showAlert('Verify your account. Please check your email.', true);
       setTimeout(() => {
         this.router.navigate(['/sign-in']);
