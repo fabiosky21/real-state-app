@@ -1,7 +1,7 @@
 ion-content {
   --padding-bottom: 0;
   position: relative;
-  overflow: visible !important; 
+  overflow: visible !important;
 }
 
 .profile-container {
@@ -92,7 +92,7 @@ ion-content {
   display: none;
 }
 
-/*  Username Styling */
+
 .username {
   font-size: 23px !important;
   font-weight: bold !important;
@@ -100,7 +100,7 @@ ion-content {
   color: #110101 !important;
 }
 
-/*  Menu Styling */
+
 .menu {
   width: 100%;
   max-width: 400px;
@@ -117,6 +117,7 @@ ion-content {
   cursor: pointer;
   transition: background 0.3s ease;
 }
+
 
 .menu-item:hover {
   background: rgba(0, 0, 0, 0.05);
@@ -186,7 +187,7 @@ ion-content {
 
 
 
-/* Logout Button */
+
 .logout-btn {
   margin-top: 20px;
   font-size: 16px;

@@ -9,7 +9,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <!-- Swiper Container -->
+  <!-- swiper container -->
   <div #swiperContainer class="swiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let image of images">
@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <!-- Property Details -->
+  <!-- property details -->
   <div class="property-details">
     <h1>{{ property?.name }}</h1>
     <div class="property-icons">
@@ -40,7 +40,7 @@
     <p class="price">Price: {{ property?.price }}</p>
   </div>
 
-  <!-- Agent Section -->
+  <!-- agent section -->
   <div class="agent-section">
     <h2>Agent</h2>
     <div class="agent-info">
@@ -65,7 +65,7 @@
     </div>
   </div>
 
-  <!-- Facilities Section -->
+  <!-- facilities section -->
   <div class="facilities-section">
     <h2>Facilities</h2>
     <div class="facilities-grid">
@@ -81,13 +81,13 @@
     <p>{{ property?.overview }}</p>  <!--  loads  Firestore -->
   </div>
 
-  <!-- Google Maps -->
+  <!-- google maps -->
   <div class="location-section">
     <h2>Location</h2>
     <div #map class="map-container"></div>
   </div>
 
-  <!-- Booking Button -->
+  <!-- booking b-->
   <div class="book-now-section">
     <h2>Interested in the property? Book now!</h2>
     <ion-button expand="block" color="primary" (click)="bookNow()">Book Now!</ion-button>

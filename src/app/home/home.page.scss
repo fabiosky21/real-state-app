@@ -2,7 +2,16 @@
   position: absolute;
   top: 20px;
   left: 20px;
-
+}
+signin-icon {
+  width: 24px;
+  height: 24px;
+}
+.signin-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
 }
 
 .pill-button {
@@ -24,13 +33,15 @@
 }
 
 /* GIF and House Image Section */
-.gif-section, .image-section {
+.gif-section,
+.image-section {
   display: flex;
   justify-content: center;
   margin-top: 29px;
 }
 
-.gif-image, .image-house {
+.gif-image,
+.image-house {
   width: 70%;
   max-width: 600px;
   height: auto;
@@ -93,7 +104,6 @@
   color: #62aeff;
 }
 
-
 .recommendation-text {
   margin: 20px;
   font-size: 24px;
@@ -133,7 +143,6 @@
   color: white;
 }
 
-
 .filter-tooltip {
   position: absolute;
   top: -50px;
@@ -156,7 +165,6 @@
   opacity: 1;
   visibility: visible;
 }
-
 
 .rating-pill {
   position: absolute;
@@ -199,8 +207,6 @@
   transform: scale(1.2);
 }
 
-
-
 @media (min-width: 600px) and (max-width: 1024px) {
   .welcome-section {
     display: flex;
@@ -219,23 +225,25 @@
     height: 60px;
   }
   /* GIF and House Image Section */
-.gif-section, .image-section {
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
-}
+  .gif-section,
+  .image-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
 
-.gif-image, .image-house {
-  width: 70%;
-  max-width: 600px;
-  height: auto;
-}
+  .gif-image,
+  .image-house {
+    width: 70%;
+    max-width: 600px;
+    height: auto;
+  }
 
-.image-house {
-  border-radius: 30%;
-  height: 300px;
-  width: 500px;
-}
+  .image-house {
+    border-radius: 30%;
+    height: 300px;
+    width: 500px;
+  }
 
   .featured-text {
     margin: 30px;
@@ -296,8 +304,7 @@
     height: 45px;
     font-size: 45px;
   }
-  span{
+  span {
     font-size: 35px;
   }
-
 }

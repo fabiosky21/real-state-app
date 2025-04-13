@@ -4,19 +4,19 @@
     <p>Choose your preferred date & time with our agents.</p>
 
     <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
-      <!--  Full Name -->
+      <!--  full naame -->
       <mat-form-field appearance="outline">
         <mat-label>Full Name</mat-label>
         <input matInput formControlName="fullName" required>
       </mat-form-field>
 
-      <!--  Property Name (Readonly) -->
+      <!--  property name (readonly) -->
       <mat-form-field appearance="outline">
         <mat-label>Property Name</mat-label>
         <input matInput formControlName="propertyName" readonly>
       </mat-form-field>
 
-      <!--  Select Agent (Dropdown) -->
+      <!--  select agent (dropdown) -->
       <mat-form-field appearance="outline">
         <mat-label>Agent</mat-label>
         <mat-select formControlName="agent">
@@ -28,7 +28,7 @@
 
 
 
-      <!--  Date Picker (Prevent Typing) -->
+      <!--  date picker (prevent typing) -->
       <mat-form-field appearance="outline">
         <mat-label>Date</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="date"
@@ -40,7 +40,7 @@
       </mat-form-field>
 
 
-      <!--  Available Times (Appears After Selecting Date) -->
+      <!--  available Times (appears after selecting date) -->
       <mat-form-field appearance="outline" *ngIf="selectedDate">
         <mat-label>Available Times</mat-label>
         <mat-select formControlName="time">
@@ -48,7 +48,7 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- Submit Button -->
+      <!-- submit button -->
       <ion-button expand="block" type="submit" [disabled]="bookingForm.invalid">Submit</ion-button>
     </form>
   </div>

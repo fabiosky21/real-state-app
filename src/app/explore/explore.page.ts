@@ -30,8 +30,9 @@ export class ExplorePage implements OnInit {
     onAuthStateChanged(authInstance, (user) => {
       if (user) {
         this.userId = user.uid;
-        this.loadProperties();
+
       }
+      this.loadProperties();
     });
   }
 

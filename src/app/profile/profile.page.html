@@ -1,6 +1,5 @@
 <ion-content>
   <div class="profile-container">
-    <!-- Avatar Upload -->
     <div class="avatar-wrapper">
       <img [src]="avatarUrl" alt="User Avatar" class="avatar" />
       <button class="upload-btn" (click)="toggleAvatarBox()">
@@ -9,8 +8,11 @@
       </button>
     </div>
 
-
-    <div class="avatar-box fade-in" *ngIf="showAvatarBox" (click)="$event.stopPropagation()">
+    <div
+      class="avatar-box fade-in"
+      *ngIf="showAvatarBox"
+      (click)="$event.stopPropagation()"
+    >
       <p>Select Avatar</p>
       <div class="avatar-options">
         <img
@@ -23,11 +25,9 @@
       <button class="close-btn" (click)="toggleAvatarBox()">Close</button>
     </div>
 
-
-    <!-- Username -->
     <h2 class="username">{{ username }}</h2>
 
-    <!-- Menu Items -->
+    <!-- menu  -->
     <div class="menu">
       <div class="menu-item" (click)="goTo('myBookings')">
         <ion-icon name="calendar-outline"></ion-icon>
@@ -47,11 +47,33 @@
         <ion-icon name="arrow-forward-outline" class="arrow"></ion-icon>
       </div>
 
+      <div class="menu-item" *ngIf="!isGuest" (click)="goTo('sellaproperty')">
+        <img src="assets/icons/selling.png" alt="Sell Property" />
+        <span>Sell a Property</span>
+        <ion-icon name="arrow-forward-outline" class="arrow"></ion-icon>
+      </div>
+
+      <div class="menu-item" *ngIf="isGuest" (click)="goToSignIn()">
+        <ion-button class="signin-button"  fill="clear">
+          <img
+            src="assets/icons/corner1.png"
+            class="signin-icon"
+            alt="Sign In"
+          />
+        </ion-button>
+        <span>Login & Signup</span>
+        <ion-icon name="arrow-forward-outline" class="arrow"></ion-icon>
+      </div>
+
       <div class="name-change-wrapper" *ngIf="showNameBox">
         <div class="name-change-box" (click)="$event.stopPropagation()">
           <ng-container *ngIf="!showConfirmBox">
             <p>Enter new name:</p>
-            <input type="text" [(ngModel)]="newUsername" placeholder="New name" />
+            <input
+              type="text"
+              [(ngModel)]="newUsername"
+              placeholder="New name"
+            />
             <div class="name-btns">
               <button class="yes" (click)="goToConfirm()">Yes</button>
               <button class="no" (click)="cancelChangeName()">No</button>
@@ -60,7 +82,9 @@
 
           <ng-container *ngIf="showConfirmBox">
             <p><strong>Are you sure?</strong></p>
-            <p class="warning-text">Once you change your name, there is no way to come back.</p>
+            <p class="warning-text">
+              Once you change your name, there is no way to come back.
+            </p>
             <div class="name-btns">
               <button class="yes" (click)="confirmChangeName()">Confirm</button>
               <button class="no" (click)="cancelChangeName()">Cancel</button>
@@ -70,7 +94,6 @@
       </div>
     </div>
 
-    <!-- Logout Button -->
     <ion-button
       expand="block"
       color="danger"
@@ -80,8 +103,4 @@
       Logout
     </ion-button>
   </div>
-
-
 </ion-content>
-
-

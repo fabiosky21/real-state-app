@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "208079861547",
+    "firebase_url": "https://real-state-8ef62-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "real-state-8ef62",
+    "storage_bucket": "real-state-8ef62.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208079861547:android:44842806e92fbac649b76e",
+        "android_client_info": {
+          "package_name": "com.realstate.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208079861547-3idg1arbi5751on2vfi83bki60r9b46n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.realstate.app",
+            "certificate_hash": "c57c1e7b3208351c4de9bba64514407c845fe7af"
+          }
+        },
+        {
+          "client_id": "208079861547-gjaj7lu1qdgt3517n5l039ic4kde9ktg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU-ux5y15NCjw2bOczp_xnWxPCIiDUJ7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208079861547-gjaj7lu1qdgt3517n5l039ic4kde9ktg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

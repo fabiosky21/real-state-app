@@ -10,10 +10,13 @@ import { BookingPage } from './booking/booking.page';
 import { MyBookingsPage } from './myBookings/mybookings.page';
 import { FaqPage } from './Faq/faq.page';
 import { InvitePage } from './invite/invite.page';
+import { SellPropertyPage } from './sellaproperty/sellproperty.page';
+import { AuthGuard } from './auth/auth.guard';
+
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'sign-in',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
@@ -36,7 +39,13 @@ export const routes: Routes = [
       { path: 'myBookings', component: MyBookingsPage },
       { path: 'Faq', component: FaqPage },
       { path: 'imagec', component: InvitePage },
-      { path: '', redirectTo: 'home', pathMatch: 'full' }, // Default to Home
+      {
+        path: 'sellaproperty',
+        loadComponent: () => import('./sellaproperty/sellproperty.page').then(m => m.SellPropertyPage), canActivate: [AuthGuard]
+      },
+
+
+      { path: '', redirectTo: 'home', pathMatch: 'full' }
     ],
   },
 ];

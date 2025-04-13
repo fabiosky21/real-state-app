@@ -58,8 +58,18 @@ export class BookingPage implements OnInit {
     private bookingService: BookingService,
     private alertController: AlertController,
     private auth: Auth,
-    private firestore: Firestore
+    private firestore: Firestore,
+
   ) {}
+
+  async presentLoginAlert(){
+    const alert = await this.alertController.create({
+      header: "Login Required",
+      message: "Please login to book a property.",
+      buttons: [{ text: "OK", role: 'cancel' }],
+    });
+    await alert.present();
+  }
 
   ngOnInit() {
     //  Initialize Form
@@ -104,17 +114,17 @@ export class BookingPage implements OnInit {
   onDateChange(event: any) {
     if (event.value) {
       this.selectedDate = event.value;
-      this.availableTimes = [...this.allTimeSlots]; // Populate available times
+      this.availableTimes = [...this.allTimeSlots]; // populate available times
       console.log(' Selected Date:', this.selectedDate);
     }
   }
 
   async onSubmit() {
-    const authInstance = getAuth(); // Get Firebase Auth instance
+    const authInstance = getAuth(); // get firebase Auth instance
     const currentUser = authInstance.currentUser;
 
     if (!currentUser) {
-      console.error("No authenticated user found.");
+      await this.presentLoginAlert();
       return;
     }
 
@@ -127,7 +137,7 @@ export class BookingPage implements OnInit {
         const agentName = this.bookingForm.value.agent;
         const propertyName = this.propertyName;
 
-        // Fetch Property Details from Firestore
+        // Fetch property details from firestore
         const propertyQuery = query(collection(this.firestore, "properties"), where("name", "==", propertyName));
         const querySnapshot = await getDocs(propertyQuery);
 
@@ -142,7 +152,7 @@ export class BookingPage implements OnInit {
         const imagesUrl = propertyData['imageUrls'] || [];
         const firstImageUrl = imagesUrl.length > 0 ? imagesUrl[0] : '';
 
-        //  Prepare booking data
+        //  prepare booking data
         const bookingData = {
           userId,
           fullName,
@@ -155,11 +165,11 @@ export class BookingPage implements OnInit {
           time
         };
 
-        // Save booking to Firestore
+        // save booking to firestore
         await addDoc(collection(this.firestore, "bookings"), bookingData);
         console.log(" Booking saved successfully!", bookingData);
 
-        //  Show confirmation alert
+        //  show confirmation alert
         const alert = await this.alertController.create({
           header: "Booking Confirmed",
           message: "Your booking has been sent! Our agents will contact you shortly.",

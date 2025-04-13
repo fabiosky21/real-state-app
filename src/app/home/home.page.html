@@ -6,6 +6,10 @@
     </div>
   </div>
 
+  <ion-button *ngIf="isGuest" class="signin-button" (click)="goToSignIn()" fill="clear">
+    <img src="assets/icons/corner1.png" class="signin-icon" alt="Sign In">
+  </ion-button>
+
   <div class="gif-section">
     <img src="assets/images/videof.gif" alt="GIF Image" class="gif-image">
   </div>

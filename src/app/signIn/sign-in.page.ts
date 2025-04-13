@@ -3,7 +3,7 @@ import {
   Auth,
   signInWithPopup,
   GoogleAuthProvider,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
 } from '@angular/fire/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, AlertController } from '@ionic/angular';
@@ -33,24 +33,33 @@ export class SignInPage {
 
   togglePasswordVisibility() {
     this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
-    this.passwordIcon = this.passwordType === 'password' ? 'eye-off-outline' : 'eye-outline';
+    this.passwordIcon =
+      this.passwordType === 'password' ? 'eye-off-outline' : 'eye-outline';
   }
 
   async signInWithEmail() {
     try {
-      const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.password);
+      const userCredential = await signInWithEmailAndPassword(
+        this.auth,
+        this.email,
+        this.password
+      );
       const user = userCredential.user;
 
       if (user.emailVerified) {
-        await this.ensureUserInFirestore(user.uid, user.email, user.displayName || 'New User');
-        console.log(" Email verified. Redirecting to home...");
+        await this.ensureUserInFirestore(
+          user.uid,
+          user.email,
+          user.displayName || 'New User'
+        );
+        console.log(' Email verified. Redirecting to home...');
         this.router.navigate(['/home']);
       } else {
         alert(' Please verify your email before signing in.');
         await this.auth.signOut();
       }
     } catch (error) {
-      console.error('❌ Error signing in:', error);
+      console.error(' Error signing in:', error);
     }
   }
 
@@ -64,13 +73,16 @@ export class SignInPage {
 
       if (!user) return;
 
-      // Ensure user exists in Firestore
-      await this.ensureUserInFirestore(user.uid, user.email, user.displayName || 'New User');
+      await this.ensureUserInFirestore(
+        user.uid,
+        user.email,
+        user.displayName || 'New User'
+      );
 
-      console.log(" Google sign-in successful! Redirecting...");
+      console.log(' Google sign-in successful! Redirecting...');
       this.router.navigate(['/home']);
     } catch (error) {
-      console.error('❌ Error signing in with Google:', error);
+      console.error(' Error signing in with Google:', error);
     }
   }
 
@@ -80,7 +92,11 @@ export class SignInPage {
     return docSnap.exists();
   }
 
-  async ensureUserInFirestore(userId: string, email: string | null, username: string) {
+  async ensureUserInFirestore(
+    userId: string,
+    email: string | null,
+    username: string
+  ) {
     if (!email) return;
 
     const userRef = doc(this.firestore, `users/${userId}`);
@@ -94,10 +110,10 @@ export class SignInPage {
         id: userId,
         email: email,
         username: username,
-        avatarUrl: avatarUrl,//  Only stores username (No avatar)
+        avatarUrl: avatarUrl, //  Only stores username (No avatar)
         likedProperties: [],
       });
-      console.log(" New user added to Firestore");
+      console.log(' New user added to Firestore');
     }
   }
 

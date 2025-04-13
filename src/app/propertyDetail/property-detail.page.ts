@@ -70,29 +70,28 @@ export class PropertyDetailPage implements OnInit {
   initMap() {
     setTimeout(() => {
       if (!this.mapElement || !this.mapElement.nativeElement) {
-        console.error('Map element not found!');
+        console.error('map no  found!');
         return;
       }
 
-      // latitude and longitude
+      // lat and long
       const lat = Number(this.property?.latitude);
       const lng = Number(this.property?.longitude);
 
       if (isNaN(lat) || isNaN(lng)) {
-        console.error('Invalid latitude or longitude values');
+        console.error('invalid lat or long values');
         return;
       }
 
-      const mapOptions = {
-        center: new google.maps.LatLng(lat, lng),
+      const propertyLocation = new google.maps.LatLng(lat, lng);
+      this.map = new google.maps.Map(this.mapElement.nativeElement, {
+        center: propertyLocation,
         zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-      };
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      });
 
       //  marker uses correct latitude and longitude
       const marker = new google.maps.Marker({
-        position: { lat, lng },
+        position: propertyLocation,
         map: this.map,
         title: this.property?.name,
       });
@@ -104,6 +103,41 @@ export class PropertyDetailPage implements OnInit {
       marker.addListener('click', () => {
         infoWindow.open(this.map, marker);
       });
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const userLocation = new google.maps.LatLng(
+              position.coords.latitude,
+              position.coords.longitude
+            );
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(this.map);
+
+            const request = {
+              origin: userLocation,
+              destination: propertyLocation,
+              travelMode: google.maps.TravelMode.DRIVING,
+            };
+            directionsService.route(
+              request,
+              (result: google.maps.DirectionsResult, status: google.maps.DirectionsStatus) => {
+                if (status === 'OK') {
+                  directionsRenderer.setDirections(result);
+                } else {
+                  console.error('Directions request failed due to ' + status);
+                }
+              }
+            );
+
+          },
+          (error) => {
+            console.error('Error getting user location: ', error);
+          },
+          { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        );
+      }
     }, 500);
   }
 
@@ -125,5 +159,5 @@ export class PropertyDetailPage implements OnInit {
 
   toggleTooltip(type: string) {
     this.tooltipType = this.tooltipType === type ? null : type; // Toggle visibility
-  } 
+  }
 }
